@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:softech_user_app/route_generator.dart';
 import 'package:softech_user_app/utils/images.dart';
 import 'package:softech_user_app/utils/theme.dart';
 import 'package:softech_user_app/viewmodels/auth_viewmodel.dart';
@@ -34,6 +35,8 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Softech User App',
           theme: appTheme,
+          initialRoute: '/signin',
+          onGenerateRoute: RouteGenerator.generateRoute,
           home: SignInScreen(),
           debugShowCheckedModeBanner: false,
         );

@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 
 class AuthViewmodel extends ChangeNotifier {
+  // controllers
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  // variables
   String _emailFieldError = '';
   String _passwordFieldError = '';
   bool _securePassword = true;
 
+  // getters
   TextEditingController get getEmailController => _emailController;
   TextEditingController get getPasswordController => _passwordController;
   String get getEmailFieldError => _emailFieldError;
   String get getPasswordFieldError => _passwordFieldError;
   bool get getSecurePassword => _securePassword;
 
+  // setters
   void setEmailFieldError(String value) {
     _emailFieldError = value;
     notifyListeners();
@@ -29,6 +33,7 @@ class AuthViewmodel extends ChangeNotifier {
     notifyListeners();
   }
 
+  //validation methods
   bool emailValidation() {
     if (_emailController.text.isEmpty) {
       setEmailFieldError('Please Enter Email');
@@ -57,7 +62,19 @@ class AuthViewmodel extends ChangeNotifier {
     }
   }
 
+  bool signInValidation() {
+    if (emailValidation() && passwordValidation()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // clear fields
   void clearfields() {
     _emailController.clear();
+    _emailFieldError = '';
+    _passwordFieldError = '';
+    _securePassword = true;
   }
 }

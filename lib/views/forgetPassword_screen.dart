@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:softech_user_app/route_generator.dart';
 import 'package:softech_user_app/utils/images.dart';
 import 'package:softech_user_app/viewmodels/auth_viewmodel.dart';
 import 'package:softech_user_app/widgets/user_form_fields_widget.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
-class SignInScreen extends StatelessWidget {
+class ForgetpasswordScreen extends StatelessWidget {
   static const routeName = 'SignInScreen';
 
-  const SignInScreen({super.key});
+  const ForgetpasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +21,22 @@ class SignInScreen extends StatelessWidget {
             FocusScope.of(context).unfocus();
           },
           child: Scaffold(
+            extendBodyBehindAppBar: true,
             resizeToAvoidBottomInset: true,
-
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.black,
+                ), // Change color as needed
+                onPressed: () {
+                  controller.clearfields();
+                  Navigator.of(context).pop();
+                },
+              ),
+            ),
             body: Container(
               height: double.infinity,
               decoration: BoxDecoration(
@@ -46,7 +59,7 @@ class SignInScreen extends StatelessWidget {
                       children: [
                         SizedBox(height: 150.h),
                         Text(
-                          'Sign In',
+                          'Forget Password',
                           style: Theme.of(context).textTheme.displaySmall!
                               .copyWith(
                                 //color: AppColors.kPrimaryColor,
@@ -57,33 +70,14 @@ class SignInScreen extends StatelessWidget {
                         SizedBox(height: 16.h),
                         Text(
                           textAlign: TextAlign.center,
-                          'Enter your credentials to access your account.',
+                          'Enter your registered email address to receive password reset instructions.',
                           style: Theme.of(
                             context,
                           ).textTheme.bodyLarge!.copyWith(fontSize: 14.sp),
                         ),
                         SizedBox(height: 28.h),
                         EmailFieldWidget(),
-                        SizedBox(height: 16.h),
-                        PasswordFieldWidget(hint: 'enter your password'),
 
-                        SizedBox(height: 12.h),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: InkWell(
-                            onTap: () {},
-                            child: GestureDetector(
-                              onTap: () {
-                                controller.clearfields();
-                                Navigator.pushNamed(
-                                  context,
-                                  forgetPasswordRoute,
-                                );
-                              },
-                              child: Text('Forgot Password?'),
-                            ),
-                          ),
-                        ),
                         SizedBox(height: 40.h),
                         Visibility(
                           visible: !isKeyboardVisible,
@@ -93,7 +87,7 @@ class SignInScreen extends StatelessWidget {
                                 width: double.infinity,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    if (controller.signInValidation()) {
+                                    if (controller.emailValidation()) {
                                       print('button pressed');
                                       // controller.signin().then((value) {
                                       //   if (value) {
@@ -109,7 +103,7 @@ class SignInScreen extends StatelessWidget {
                                       //         color: Colors.white,
                                       //       )
                                       //     :
-                                      Text('Sign In'),
+                                      Text('Recover Password'),
                                 ),
                               ),
                               SizedBox(height: 20.h),
