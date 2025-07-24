@@ -35,9 +35,8 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Softech User App',
           theme: appTheme,
-          initialRoute: '/signin',
+          initialRoute: '/',
           onGenerateRoute: RouteGenerator.generateRoute,
-          home: SignInScreen(),
           debugShowCheckedModeBanner: false,
         );
       },

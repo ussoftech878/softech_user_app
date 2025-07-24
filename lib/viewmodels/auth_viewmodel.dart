@@ -1,14 +1,21 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:softech_user_app/views/signin_screen.dart';
 
 class AuthViewmodel extends ChangeNotifier {
   // controllers
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   // variables
   String _emailFieldError = '';
   String _passwordFieldError = '';
   bool _securePassword = true;
+  String _confirmPasswordFieldError = '';
+  String _operatingSystem = '';
 
   // getters
   TextEditingController get getEmailController => _emailController;
@@ -16,10 +23,18 @@ class AuthViewmodel extends ChangeNotifier {
   String get getEmailFieldError => _emailFieldError;
   String get getPasswordFieldError => _passwordFieldError;
   bool get getSecurePassword => _securePassword;
+  TextEditingController get getConfirmPasswordController =>
+      _confirmPasswordController;
+  String get getConfirmPasswordFieldError => _confirmPasswordFieldError;
 
   // setters
   void setEmailFieldError(String value) {
     _emailFieldError = value;
+    notifyListeners();
+  }
+
+  void setConfirmPasswordFieldError(String value) {
+    _confirmPasswordFieldError = value;
     notifyListeners();
   }
 
@@ -49,6 +64,27 @@ class AuthViewmodel extends ChangeNotifier {
     }
   }
 
+  bool forgotPasswordValidation() {
+    if (passwordValidation() && confirmPasswordValidation()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool confirmPasswordValidation() {
+    if (_confirmPasswordController.text.isEmpty) {
+      setConfirmPasswordFieldError('Password didn\'t matched');
+      return false;
+    } else if (_confirmPasswordController.text != _passwordController.text) {
+      setConfirmPasswordFieldError('Password didn\'t matched');
+      return false;
+    } else {
+      setConfirmPasswordFieldError('');
+      return true;
+    }
+  }
+
   bool passwordValidation() {
     if (_passwordController.text.isEmpty) {
       setPasswordFieldError('Please Enter Password');
@@ -70,11 +106,70 @@ class AuthViewmodel extends ChangeNotifier {
     }
   }
 
+  //splash
+  Future<Widget> checkSplash() async {
+    //PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    //setVersion(packageInfo.version);
+    // setBuild(packageInfo.buildNumber);
+
+    if (Platform.isAndroid) {
+      _operatingSystem = 'Android';
+    } else {
+      _operatingSystem = 'iOS';
+    }
+    //TODO: ENABLE FCM
+    // _fcmToken = await _firebaseMessaging.getToken();
+    // print("fcm token: $_fcmToken");
+    // final authToken =
+    //     await _sharedPref.read(SharedPreferencesKeys.authToken.text);
+    await Future.delayed(const Duration(seconds: 4), () {});
+    // if (authToken == null) {
+    //   return const IntroSlidesScreen();
+    // } else {
+
+    // }
+
+    Widget routeTo = const SignInScreen();
+    // await callSplash(showLoader: false).then((value) async {
+    //   if (value) {
+    //     routeTo = const SignInScreen();
+    //   } else {
+    //     routeTo = const SignInScreen();
+    //   }
+    // });
+    return routeTo;
+  }
+
+  // Future<bool> callSplash({required bool showLoader}) async {
+  //   if (showLoader) {
+  //     //EasyLoading.show(status: 'Please Wait...');
+  //   }
+  //   try {
+  //     final AuthResponse response = await _authApiServices.splashApi();
+  //     if (response.isSuccess!) {
+  //       setAuthResponse(response);
+  //       EasyLoading.dismiss();
+  //       return true;
+  //     } else {
+  //       EasyLoading.showError(response.message!);
+  //       return false;
+  //     }
+  //   } catch (e) {
+  //     EasyLoading.showError(e.toString());
+  //     return false;
+  //   }
+  // }
+
   // clear fields
   void clearfields() {
     _emailController.clear();
+    _passwordController.clear();
+    _confirmPasswordController.clear();
+
     _emailFieldError = '';
     _passwordFieldError = '';
     _securePassword = true;
+    _confirmPasswordFieldError = '';
+    notifyListeners();
   }
 }

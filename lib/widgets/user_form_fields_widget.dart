@@ -181,46 +181,49 @@ class PasswordFieldWidget extends StatelessWidget {
   }
 }
 
-// class ConfirmPasswordFieldWidget extends StatelessWidget {
-//   final String hint;
+class ConfirmPasswordFieldWidget extends StatelessWidget {
+  final String hint;
 
-//   const ConfirmPasswordFieldWidget({super.key, required this.hint});
+  const ConfirmPasswordFieldWidget({super.key, required this.hint});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Consumer<AuthViewModel>(builder: (_, authViewModel, __) {
-//       return Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           TextField(
-//             controller: authViewModel.getConfirmPasswordController,
-//             onChanged: (text) {},
-//             obscureText: authViewModel.getSecurePassword,
-//             keyboardType: TextInputType.visiblePassword,
-//             decoration: InputDecoration(
-//                 hintText: hint,
-//                 suffixIcon: IconButton(
-//                   icon: authViewModel.getSecurePassword
-//                       ? const Icon(Icons.visibility_off)
-//                       : const Icon(Icons.visibility),
-//                   onPressed: () {
-//                     authViewModel.setSecurePassword();
-//                   },
-//                 ),
-//                 prefixIcon: Padding(
-//                   padding: const EdgeInsets.all(16),
-//                   child: SvgPicture.asset(lockIcon),
-//                 )),
-//           ),
-//           SizedBox(
-//             height: 5.h,
-//           ),
-//           Visibility(
-//               visible: authViewModel.getConfirmPasswordFieldError.isNotEmpty,
-//               child: orange14w400(
-//                   data: authViewModel.getConfirmPasswordFieldError)),
-//         ],
-//       );
-//     });
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<AuthViewmodel>(
+      builder: (_, authViewModel, __) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextField(
+              controller: authViewModel.getConfirmPasswordController,
+              onChanged: (text) {},
+              obscureText: authViewModel.getSecurePassword,
+              keyboardType: TextInputType.visiblePassword,
+              decoration: InputDecoration(
+                hintText: hint,
+                suffixIcon: IconButton(
+                  icon: authViewModel.getSecurePassword
+                      ? const Icon(Icons.visibility_off)
+                      : const Icon(Icons.visibility),
+                  onPressed: () {
+                    authViewModel.setSecurePassword();
+                  },
+                ),
+                prefixIcon: Padding(
+                  padding: EdgeInsets.only(left: 16.w),
+                  child: Icon(Icons.password_outlined),
+                ),
+              ),
+            ),
+            SizedBox(height: 5.h),
+            Visibility(
+              visible: authViewModel.getConfirmPasswordFieldError.isNotEmpty,
+              child: orange14w400(
+                data: authViewModel.getConfirmPasswordFieldError,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}

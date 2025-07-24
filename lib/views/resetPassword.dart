@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:softech_user_app/route_generator.dart';
 import 'package:softech_user_app/utils/images.dart';
 import 'package:softech_user_app/viewmodels/auth_viewmodel.dart';
 import 'package:softech_user_app/widgets/user_form_fields_widget.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
-class ForgetpasswordScreen extends StatelessWidget {
-  static const routeName = 'SignInScreen';
-
-  const ForgetpasswordScreen({super.key});
+class ResetpasswordScreen extends StatelessWidget {
+  const ResetpasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +57,7 @@ class ForgetpasswordScreen extends StatelessWidget {
                       children: [
                         SizedBox(height: 150.h),
                         Text(
-                          'Forget Password',
+                          'Reset Password',
                           style: Theme.of(context).textTheme.displaySmall!
                               .copyWith(
                                 //color: AppColors.kPrimaryColor,
@@ -71,15 +68,18 @@ class ForgetpasswordScreen extends StatelessWidget {
                         SizedBox(height: 16.h),
                         Text(
                           textAlign: TextAlign.center,
-                          'Enter your registered email address to continue.',
+                          'Reset your password',
                           style: Theme.of(
                             context,
                           ).textTheme.bodyLarge!.copyWith(fontSize: 14.sp),
                         ),
-                        SizedBox(height: 28.h),
-                        EmailFieldWidget(),
 
+                        SizedBox(height: 28.h),
+                        PasswordFieldWidget(hint: 'New Password'),
+                        SizedBox(height: 20.h),
+                        ConfirmPasswordFieldWidget(hint: 'Confirm Password'),
                         SizedBox(height: 40.h),
+
                         Visibility(
                           visible: !isKeyboardVisible,
                           child: Column(
@@ -88,11 +88,8 @@ class ForgetpasswordScreen extends StatelessWidget {
                                 width: double.infinity,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    if (controller.emailValidation()) {
-                                      Navigator.pushNamed(
-                                        context,
-                                        resetPasswordRoute,
-                                      );
+                                    if (controller.forgotPasswordValidation()) {
+                                      print('Password reset successful');
                                       // controller.signin().then((value) {
                                       //   if (value) {
                                       //     ColoredPrint.green('hello');
