@@ -5,6 +5,7 @@ import 'package:softech_user_app/route_generator.dart';
 import 'package:softech_user_app/utils/images.dart';
 import 'package:softech_user_app/utils/theme.dart';
 import 'package:softech_user_app/viewmodels/auth_viewmodel.dart';
+import 'package:softech_user_app/viewmodels/home_navbar_viewmodel.dart';
 import 'package:softech_user_app/views/signin_screen.dart';
 
 void main() {
@@ -14,6 +15,9 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthViewmodel()),
+        ChangeNotifierProvider(
+          create: (_) => HomeNavbarViewmodel(),
+        ), // Example of another provider
         // Add other providers here if needed
       ],
       child: const MyApp(),

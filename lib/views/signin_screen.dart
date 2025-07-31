@@ -94,7 +94,10 @@ class SignInScreen extends StatelessWidget {
                                 child: ElevatedButton(
                                   onPressed: () {
                                     if (controller.signInValidation()) {
-                                      print('button pressed');
+                                      Navigator.pushReplacementNamed(
+                                        context,
+                                        navHomeRoute,
+                                      );
                                       // controller.signin().then((value) {
                                       //   if (value) {
                                       //     ColoredPrint.green('hello');
