@@ -4,7 +4,6 @@ import 'package:softech_user_app/views/nav_home_screen.dart';
 import 'package:softech_user_app/views/resetPassword.dart';
 import 'package:softech_user_app/views/signin_screen.dart';
 import 'package:softech_user_app/views/splash_screen.dart';
-import 'package:softech_user_app/views/task_add_screen.dart';
 import 'package:softech_user_app/views/task_screen.dart';
 
 // Define route names as constants for better maintainability
@@ -43,11 +42,6 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const TaskScreen(),
         ); // Update with actual TaskScreen when implemented
-      case taskAddScreenRoute:
-        return MaterialPageRoute(
-          builder: (_) =>
-              const TaskAddScreen(), // Update with actual TaskAddScreen when implemented
-        );
       default:
         return _errorRoute();
     }

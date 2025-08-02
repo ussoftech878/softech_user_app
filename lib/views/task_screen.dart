@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:softech_user_app/route_generator.dart';
 import 'package:softech_user_app/utils/images.dart';
+import 'package:softech_user_app/widgets/add_task_dialog.dart';
 
 class TaskScreen extends StatelessWidget {
   const TaskScreen({super.key});
@@ -58,7 +59,7 @@ class TaskScreen extends StatelessWidget {
 
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.pushNamed(context, taskAddScreenRoute);
+            show_add_task_dialog(context);
           },
           child: Icon(Icons.add),
           tooltip: 'Add New Task',
