@@ -46,9 +46,31 @@ class TaskScreen extends StatelessWidget {
                         title: Text('Task ${index + 1}'),
                         subtitle: Text('Description of task ${index + 1}'),
                         leading: Icon(Icons.task),
-                        trailing: Icon(Icons.check_circle_outline),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            InkWell(
+                              child: Icon(Icons.edit),
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  taskEditScreenRoute,
+                                  arguments: 'Task ${index + 1}',
+                                );
+                              },
+                            ),
+                            SizedBox(width: 20.w),
+                            InkWell(child: Icon(Icons.delete), onTap: () {}),
+                          ],
+                        ),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          taskDetailsScreenRoute,
+                          arguments: 'Task ${index + 1}',
+                        );
+                      },
                     );
                   },
                 ),

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:softech_user_app/views/attendance_screen.dart';
 import 'package:softech_user_app/views/forgetPassword_screen.dart';
 import 'package:softech_user_app/views/nav_home_screen.dart';
 import 'package:softech_user_app/views/resetPassword.dart';
 import 'package:softech_user_app/views/signin_screen.dart';
 import 'package:softech_user_app/views/splash_screen.dart';
+import 'package:softech_user_app/views/task_details_screen.dart';
+import 'package:softech_user_app/views/task_edit_screen.dart';
 import 'package:softech_user_app/views/task_screen.dart';
 
 // Define route names as constants for better maintainability
@@ -14,6 +17,9 @@ const String resetPasswordRoute = '/resetPassword';
 const String navHomeRoute = '/navHome';
 const String TaskScreenRoute = '/taskScreen';
 const String taskAddScreenRoute = '/taskAddScreen';
+const String taskDetailsScreenRoute = '/taskDetailsScreen';
+const String attendanceScreenRoute = '/attendanceScreen';
+const String taskEditScreenRoute = '/taskEditScreen';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -42,6 +48,20 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => const TaskScreen(),
         ); // Update with actual TaskScreen when implemented
+      case taskDetailsScreenRoute:
+        return MaterialPageRoute(
+          builder: (_) => const TaskDetailsScreen(),
+        ); // Update with actual TaskAddScreen when implemented
+      case attendanceScreenRoute:
+        return MaterialPageRoute(
+          builder: (_) =>
+              const AttendanceScreen(), // Update with actual AttendanceScreen when implemented
+        );
+      case taskEditScreenRoute:
+        return MaterialPageRoute(
+          builder: (_) =>
+              const TaskEditScreen(), // Update with actual TaskAddScreen when implemented
+        );
       default:
         return _errorRoute();
     }
