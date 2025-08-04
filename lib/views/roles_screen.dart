@@ -4,8 +4,8 @@ import 'package:softech_user_app/route_generator.dart';
 import 'package:softech_user_app/utils/images.dart';
 import 'package:softech_user_app/widgets/add_task_dialog.dart';
 
-class TaskScreen extends StatelessWidget {
-  const TaskScreen({super.key});
+class Roles extends StatelessWidget {
+  const Roles({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +27,10 @@ class TaskScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(8.w),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'STI Daily Report Sheet ',
+                      'Roles',
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         fontSize: 30.sp,
                         fontWeight: FontWeight.bold,
@@ -38,7 +38,7 @@ class TaskScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 10.h),
                     Text(
-                      'tasks done by you',
+                      'tasks assigned to you',
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         fontSize: 20.sp,
                         color: Colors.black87,
@@ -61,18 +61,7 @@ class TaskScreen extends StatelessWidget {
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            InkWell(
-                              child: Icon(Icons.edit),
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  taskEditScreenRoute,
-                                  arguments: 'Task ${index + 1}',
-                                );
-                              },
-                            ),
-                            SizedBox(width: 20.w),
-                            InkWell(child: Icon(Icons.delete), onTap: () {}),
+                            InkWell(child: Icon(Icons.task_alt), onTap: () {}),
                           ],
                         ),
                       ),
@@ -89,14 +78,6 @@ class TaskScreen extends StatelessWidget {
               ),
             ],
           ),
-        ),
-
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            show_add_task_dialog(context);
-          },
-          child: Icon(Icons.add),
-          tooltip: 'Add New Task',
         ),
       ),
     );

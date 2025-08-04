@@ -7,11 +7,11 @@ class TaskDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(8.w),
-      child: Scaffold(
-        appBar: AppBar(title: Text('8/4/2025')),
-        body: Center(child: Text('Task details will be displayed here.')),
+    return Scaffold(
+      appBar: AppBar(title: Text('8/4/2025')),
+      body: Padding(
+        padding: EdgeInsets.all(8.w),
+        child: Center(child: Text('Task details will be displayed here.')),
       ),
     );
   }
