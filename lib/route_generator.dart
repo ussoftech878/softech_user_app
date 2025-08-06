@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:softech_user_app/views/profile_screen.dart';
 import 'package:softech_user_app/views/roles_screen.dart';
 import 'package:softech_user_app/views/attendance_screen.dart';
 import 'package:softech_user_app/views/forgetPassword_screen.dart';
@@ -22,6 +23,7 @@ const String taskDetailsScreenRoute = '/taskDetailsScreen';
 const String attendanceScreenRoute = '/attendanceScreen';
 const String taskEditScreenRoute = '/taskEditScreen';
 const String rolesScreenRoute = '/rolesScreen';
+const String ProfileScreenRoute = '/profileScreen';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -69,6 +71,10 @@ class RouteGenerator {
           builder: (_) =>
               const Roles(), // Update with actual Roles when implemented
         );
+      case ProfileScreenRoute:
+        return MaterialPageRoute(
+          builder: (_) => const ProfileScreen(),
+        ); // Update with actual ProfileScreen when implemented
 
       default:
         return _errorRoute();
