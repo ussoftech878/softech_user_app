@@ -68,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return EasySplashScreen(
-      logo: PngAssests.logo,
+      logo: Image.asset(PngAssests.logo),
       logoWidth: 150.78.w,
       /* title:  Text(
         'Customer',
